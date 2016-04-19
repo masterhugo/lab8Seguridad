@@ -18,7 +18,7 @@
     <repositories>
         <repository>
             <id>ECI internal repository</id>
-            <url>http://profesores.is.escuelaing.edu.co/hcadavid/mvnmirror</url>
+            <url>https://hectorateci.github.io/maven/repository</url>
         </repository>
     </repositories>
     
@@ -48,6 +48,23 @@
             <groupId>org2.pdsw.stubs</groupId>
             <artifactId>ServicesFacadeStub</artifactId>
             <version>1.2</version>            
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>1.2.1</version>
         </dependency>
     </dependencies>
 

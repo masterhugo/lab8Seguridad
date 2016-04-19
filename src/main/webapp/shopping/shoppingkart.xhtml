@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head></h:head>
+
+    <h:body>
+        <h:form id="Carrito">
+            <p:dataTable id="check" var="product"  value="#{carritoDeCompras.productos}" selection="#{carritoDeCompras.selectedProducto}" rowKey="#{product.id}" 
+                         style="margin-bottom:0" rowIndexVar="rowIndex">
+                <f:facet name="header">
+                    Inventario
+                </f:facet>
+                <p:column selectionMode="single" style="width:16px;text-align:center"/>
+                <p:column headerText="Id" sortBy="#{product.id}">
+                    <h:outputText value="#{product.id}" />
+                </p:column>
+
+                <p:column headerText="Nombre" >
+                    <h:outputText value="#{product.nombre}" />
+                </p:column>
+
+                <p:column headerText="Precio">
+                    <h:outputText value="#{product.precioEnPesos}" />
+                </p:column>
+            </p:dataTable>
+            <br></br>
+            <p:inputText id="carro" style="text-align: center;" label="Agregar al carrito" value="#{carritoDeCompras.cant}"></p:inputText>
+            <p:commandButton value="Agregar al Carrito de Compras" actionListener="#{carritoDeCompras.comprar}" update="Carrito" style="text-align: center;"></p:commandButton>
+            <p:commandButton value="Calcular Costos" actionListener="#{carritoDeCompras.neto}" update="Carrito" oncomplete="PF('Compradialog').show()"></p:commandButton>
+            <br></br>
+            <br></br>
+            <p:dataTable id="Total" var="totales" value="#{carritoDeCompras.cantidad}">
+                <f:facet name="header">
+                    Carrito de compras
+                </f:facet>
+                <p:column headerText="Id" sortBy="#{product.id}">
+                    <h:outputText value="#{totales.id}" />
+                </p:column>
+                
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{totales.nombre}" />
+                </p:column>
+
+                <p:column headerText="Precio">
+                    <h:outputText value="#{totales.precio}" />
+                </p:column>
+                
+                <p:column headerText="Cantidad">
+                    <h:outputText value="#{totales.cantidad}" />
+                </p:column>
+                
+                <p:column headerText="Total">
+                    <h:outputText value="#{totales.total}" />
+                </p:column>
+            </p:dataTable>
+            <p:dialog header="Compra Realizada" widgetVar="Compradialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="200">
+                <p:outputPanel id="buyDetail" style="text-align:center;">
+                    Total:<h:outputText value="#{carritoDeCompras.total}" style="display:block"/>
+                </p:outputPanel>
+            </p:dialog>
+            <h:outputLink value="/logout">logout</h:outputLink>
+        </h:form>
+    </h:body>
+
+</html>
